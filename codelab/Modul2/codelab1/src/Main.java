@@ -10,12 +10,12 @@ public class Main {
         // Menetapkan nilai atribut untuk objek hewan1
         hewan1.nama = "kucing"; // Memberikan nilai "kucing" untuk atribut nama
         hewan1.jenis = "mamalia"; // Memberikan nilai "mamalia" untuk atribut jenis
-        hewan1.suara = "miawww"; // Memberikan suara yang dibuat kucing
+        hewan1.suara = "miawww~~~"; // Memberikan suara yang dibuat kucing
 
         // Menetapkan nilai atribut untuk objek hewan2
         hewan2.nama = "anjing"; // Memberikan nilai "anjing" untuk atribut nama
-        hewan2.jenis = "sejenis mamalia tapi ada yg manusia"; // Deskripsi untuk jenis anjing
-        hewan2.suara = "aku sepi kalo gaada kamu"; // Suara yang diberikan untuk anjing
+        hewan2.jenis = "mamalia"; // Deskripsi untuk jenis anjing
+        hewan2.suara = "wooff-wooff!!"; // Suara yang diberikan untuk anjing
 
         // Memanggil metode tampilkanInfo() untuk menampilkan informasi objek hewan1
         hewan1.tampilkanInfo();
