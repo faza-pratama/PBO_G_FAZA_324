@@ -1,3 +1,5 @@
+import java.util.Scanner;
+
 // Definisi kelas utama (main class)
 public class Main {
     // Metode utama sebagai titik awal eksekusi program
@@ -6,6 +8,7 @@ public class Main {
         rekeningBank rekening1 = new rekeningBank();
         // Membuat objek rekening2 dari kelas 'rekeningBank'
         rekeningBank rekening2 = new rekeningBank();
+        Scanner objInput = new Scanner(System.in);
 
         // Mengisi atribut 'rekening1' dengan nilai awal
         rekening1.nomorRekening = "202410370110324"; // Nomor rekening untuk rekening1
@@ -23,15 +26,19 @@ public class Main {
         rekening2.tampilkanInfo();
 
         // Setoran uang ke rekening1 dan rekening2
-        double setor1 = 200000; // Jumlah uang yang akan disetor ke rekening1
+        System.out.print("masukan jumlah setor: Rp.");
+        double setor1 = objInput.nextDouble(); // Jumlah uang yang akan disetor ke rekening1
         rekening1.setorUang(setor1); // Memanggil metode setorUang untuk rekening1
-        double setor2 = 500000; // Jumlah uang yang akan disetor ke rekening2
+        System.out.print("masukan jumlah setor: Rp.");
+        double setor2 = objInput.nextDouble(); // Jumlah uang yang akan disetor ke rekening2
         rekening2.setorUang(setor2); // Memanggil metode setorUang untuk rekening2
 
         // Penarikan uang dari rekening1 dan rekening2
-        double tarik1 = 500000; // Jumlah uang yang akan ditarik dari rekening1
+        System.out.print("masukan jumlah tarik: Rp.");
+        double tarik1 = objInput.nextDouble(); // Jumlah uang yang akan ditarik dari rekening1
         rekening1.tarikUang(tarik1); // Memanggil metode tarikUang untuk rekening1
-        double tarik2 = 500000; // Jumlah uang yang akan ditarik dari rekening2
+        System.out.print("masukan jumlah tarik: Rp.");
+        double tarik2 = objInput.nextDouble(); // Jumlah uang yang akan ditarik dari rekening2
         rekening2.tarikUang(tarik2); // Memanggil metode tarikUang untuk rekening2
 
         // Menampilkan kembali informasi rekening1 setelah transaksi
