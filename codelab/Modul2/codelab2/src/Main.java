@@ -26,18 +26,19 @@ public class Main {
         rekening2.tampilkanInfo();
 
         // Setoran uang ke rekening1 dan rekening2
-        System.out.print("masukan jumlah setor: Rp.");
+        System.out.print("masukan jumlah setor: Rp.");//minta user untuk memasukan jumlah setor
         double setor1 = objInput.nextDouble(); // Jumlah uang yang akan disetor ke rekening1
         rekening1.setorUang(setor1); // Memanggil metode setorUang untuk rekening1
-        System.out.print("masukan jumlah setor: Rp.");
+        System.out.print("masukan jumlah setor: Rp.");//minta user untuk memasukan jumlah setor
         double setor2 = objInput.nextDouble(); // Jumlah uang yang akan disetor ke rekening2
         rekening2.setorUang(setor2); // Memanggil metode setorUang untuk rekening2
 
         // Penarikan uang dari rekening1 dan rekening2
-        System.out.print("masukan jumlah tarik: Rp.");
+        System.out.print("masukan jumlah tarik: Rp."); //minta user untuk memasukan jumlah tarik
         double tarik1 = objInput.nextDouble(); // Jumlah uang yang akan ditarik dari rekening1
         rekening1.tarikUang(tarik1); // Memanggil metode tarikUang untuk rekening1
-        System.out.print("masukan jumlah tarik: Rp.");
+
+        System.out.print("masukan jumlah tarik: Rp."); //minta user untuk memasukan jumlah tarik
         double tarik2 = objInput.nextDouble(); // Jumlah uang yang akan ditarik dari rekening2
         rekening2.tarikUang(tarik2); // Memanggil metode tarikUang untuk rekening2
 
