@@ -2,7 +2,7 @@ package com.game;
 import com.game.karakter.KarakterGame;
 import com.game.karakter.Pahlawan;
 import com.game.karakter.Musuh;
-//ini main file
+
 public class Main {
     public static void main(String[] args){
         KarakterGame karakterGame = new KarakterGame("karakter umum", 100);
