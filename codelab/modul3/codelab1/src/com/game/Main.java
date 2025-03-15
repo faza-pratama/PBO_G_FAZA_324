@@ -15,6 +15,7 @@ public class Main {
         viper.setNama("viper");
         viper.setKesehatan(200);
 
+        System.out.println(karakterGame.getNama() + " memiliki kesehatan: " + karakterGame.getKesehatan());
         System.out.println(brimstone.getNama() + " memiliki kesehatan: " + brimstone.getKesehatan());
         System.out.println(viper.getNama() + " memiliki kesehatan: " + viper.getKesehatan());
 
