@@ -7,7 +7,7 @@ public class Pahlawan extends KarakterGame {
 
     @Override
     public void serang(KarakterGame target){
-        System.out.println(this.getNama() + " menyerang " + target.getNama() + " menggunakan pedang!!");
+        System.out.println(this.getNama() + " menyerang " + target.getNama() + " menggunakan orbital strike!!");
         target.setKesehatan(target.getKesehatan() - 20);
         System.out.println("kesehatan " + target.getNama() + " tersisa " + target.getKesehatan());
     }

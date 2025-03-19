@@ -7,8 +7,8 @@ public class Musuh extends KarakterGame {
 
     @Override
     public void serang(KarakterGame target){
-        System.out.println(this.getNama() + " menyerang " + target.getNama() + " menggunakan pedang!!");
-        target.setKesehatan(target.getKesehatan() - 20);
+        System.out.println(this.getNama() + " menyerang " + target.getNama() + " menggunakan snake bite!!");
+        target.setKesehatan(target.getKesehatan() - 15);
         System.out.println("kesehatan " + target.getNama() + " tersisa " + target.getKesehatan());
     }
 }
