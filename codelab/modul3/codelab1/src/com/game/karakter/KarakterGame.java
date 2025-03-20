@@ -35,7 +35,5 @@ public class KarakterGame { // Mendefinisikan kelas KarakterGame, yang merupakan
     // Metode serang untuk mensimulasikan serangan karakter ke karakter lain
     public void serang(KarakterGame target){ // Metode untuk mensimulasikan serangan ke karakter target.
         System.out.println(this.nama + " menyerang " + target.getNama()); // Mencetak pesan serangan ke konsol.
-        // Di sini, Anda dapat menambahkan logika untuk mengurangi kesehatan target.
-        // Misalnya: target.setKesehatan(target.getKesehatan() - 10);
     }
 }
