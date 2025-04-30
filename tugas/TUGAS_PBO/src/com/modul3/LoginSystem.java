@@ -9,7 +9,7 @@ public class LoginSystem {
     public static void main(String[] args) {
         Scanner objInput = new Scanner(System.in);
 
-        User user = new User("user", "0000");
+        User user = new User("user"  , "0000");
 
         Admin admin = new Admin("namaAdmin", "NIMadmin", "UserAdmin", "passAdmin");
         admin.setNama("Alinno faza");
@@ -17,7 +17,7 @@ public class LoginSystem {
         admin.setAdminuser("admin324");
         admin.setPassword("pass324");
 
-        Mahasiswa mahasiswa = new Mahasiswa("nama", "324");
+        Mahasiswa mahasiswa = new Mahasiswa("nama", "nim");
         mahasiswa.setNama("Alinno faza");
         mahasiswa.setNim("324");
 
