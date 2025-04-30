@@ -1,50 +1,37 @@
 package app;
-
 import perpustakaan.Fiksi;
 import perpustakaan.NonFiksi;
 import perpustakaan.Anggota;
-
 public class Main {
     public static void main(String[] args){
-        Fiksi fiksi = new Fiksi("", "", "");
+        Fiksi fiksi = new Fiksi("one piece", "oda sensei", "anime");
         NonFiksi nonFiksi = new NonFiksi("", "", "");
-        Anggota anggota = new Anggota("", "", 0);
+        Anggota anggota1 = new Anggota("", "", 0);
+        Anggota anggota2 = new Anggota("", "", 0);
+        //set atribut judul penulis genre dan bidang
+        fiksi.setJudul("One piece");
+        fiksi.setPenulis("Oda Sensei");
+        fiksi.setGenre("anime");
+        nonFiksi.setJudul("Cosmos");
+        nonFiksi.setPenulis("Carl Sagan");
+        nonFiksi.setBidang("sains");
+        //set nama idAnggota dan durasi
+        anggota1.setNama("faza");
+        anggota1.setIdAanggota("G324");
+        anggota2.setNama("ardhi");
+        anggota2.setIdAanggota("G290");
+        anggota2.setDurasiPeminjaman(7);
 
-        fiksi.setJudul("one piece");
-        fiksi.setPenulis("masashi kisimoto");
-        fiksi.setGenre("action");
         fiksi.DisplayInfo();
-
-        nonFiksi.setJudul("madilog");
-        nonFiksi.setPenulis("tan malaka");
-        nonFiksi.setBidang("sejarah");
         nonFiksi.DisplayInfo();
 
-        System.out.println();
+        anggota1.infoAnggota();
+        anggota2.infoAnggota();
 
-        anggota.setNama("faza");
-        anggota.setIdAanggota("324");
-        anggota.infoAnggota();
-        anggota.setNama("ardhi");
-        anggota.setIdAanggota("290");
-        anggota.infoAnggota();
+        anggota1.peminjaman(fiksi.getJudul());
+        anggota2.peminjaman(nonFiksi.getJudul(), anggota2.getDurasiPeminjaman());
 
-        System.out.println();
-
-        anggota.setNama("faza");
-        anggota.setIdAanggota("324");
-        anggota.peminjaman(fiksi.getJudul());
-        
-        anggota.setDurasiPeminjaman(10);
-        anggota.setNama("ardhi");
-        anggota.setIdAanggota("290");
-        anggota.peminjaman(nonFiksi.getJudul(), anggota.getDurasiPeminjaman());
-
-        System.out.println();
-
-        anggota.setNama("faza");
-        anggota.pengembalian(fiksi.getJudul());
-        anggota.setNama("ardhi");
-        anggota.pengembalian(nonFiksi.getJudul());
+        anggota1.pengembalian(fiksi.getJudul());
+        anggota2.pengembalian(nonFiksi.getJudul());
     }
 }
