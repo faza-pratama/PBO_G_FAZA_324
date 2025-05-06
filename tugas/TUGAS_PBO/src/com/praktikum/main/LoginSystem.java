@@ -1,25 +1,16 @@
-package com.modul3;
+package com.praktikum.main;
 
-import com.modul3.datauser.User;
-import com.modul3.datauser.Admin;
-import com.modul3.datauser.Mahasiswa;
+import com.praktikum.users.User;
+import com.praktikum.users.Admin;
+import com.praktikum.users.Mahasiswa;
+
 import java.util.Scanner;
 
 public class LoginSystem {
     public static void main(String[] args) {
+        User user1 = new Admin("faza", "324");
+        User user2 = new Mahasiswa("faza", "324");
         Scanner objInput = new Scanner(System.in);
-
-        User user = new User("user"  , "0000");
-
-        Admin admin = new Admin("namaAdmin", "NIMadmin", "UserAdmin", "passAdmin");
-        admin.setNama("Alinno faza");
-        admin.setNim("324");
-        admin.setAdminuser("admin324");
-        admin.setPassword("pass324");
-
-        Mahasiswa mahasiswa = new Mahasiswa("nama", "nim");
-        mahasiswa.setNama("Alinno faza");
-        mahasiswa.setNim("324");
 
         int pilihan = 0;
 
@@ -31,25 +22,29 @@ public class LoginSystem {
             System.out.print("Masukan pilihan: ");
             pilihan = objInput.nextInt();
             objInput.nextLine();
-
             switch (pilihan) {
                 case 1:
                     System.out.print("Masukan Username:");
-                    String adminUser = objInput.nextLine();
+                    String username = objInput.nextLine();
                     System.out.print("Masukan Password:");
                     String password = objInput.nextLine();
-                    if (admin.login(adminUser, password)) {
-                        admin.displayinfo();
+                    if (user1.login(username, password)) {
+                        user1.diplayMenu();
+                    }else {
+                        System.out.println("login gagal");
                     }
                     break;
+
 
                 case 2:
                     System.out.print("Masukan nama:");
                     String nama = objInput.nextLine();
                     System.out.print("Masukan nim:");
                     String nim = objInput.nextLine();
-                    if (mahasiswa.login(nama, nim)) {
-                        mahasiswa.displayinfo();
+                    if (user2.login(nama, nim)) {
+                        user2.diplayMenu();
+                    }else {
+                        System.out.println("login gagal");
                     }
                     break;
 
@@ -63,4 +58,5 @@ public class LoginSystem {
         }
         objInput.close();
     }
+
 }
