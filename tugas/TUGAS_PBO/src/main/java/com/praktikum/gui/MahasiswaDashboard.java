@@ -15,10 +15,12 @@ public class MahasiswaDashboard {
         VBox layout = new VBox(10);
         layout.setPadding(new Insets(10));
 
-        Label welcome = new Label("Selamat datang, faza" + user.getName());
+        Label welcome = new Label("Selamat datang," + user.getName());
 
         TextField namaField = new TextField();
         namaField.setPromptText("Nama Barang");
+        TextField deskripsiField = new TextField();
+        deskripsiField.setPromptText("Deskripsi Barang");
         TextField lokasiField = new TextField();
         lokasiField.setPromptText("Lokasi Ditemukan/Hilang");
 
@@ -30,18 +32,22 @@ public class MahasiswaDashboard {
 
         TableColumn<Item, String> namaCol = new TableColumn<>("Nama");
         namaCol.setCellValueFactory(c -> new javafx.beans.property.SimpleStringProperty(c.getValue().getNama()));
+        TableColumn<Item, String> deskripcol = new TableColumn<>("Deskripsi");
+        deskripcol.setCellValueFactory(c -> new javafx.beans.property.SimpleStringProperty(c.getValue().getDeskripsi()));
         TableColumn<Item, String> lokasiCol = new TableColumn<>("Lokasi");
         lokasiCol.setCellValueFactory(c -> new javafx.beans.property.SimpleStringProperty(c.getValue().getLokasi()));
-        table.getColumns().addAll(namaCol, lokasiCol);
+        table.getColumns().addAll(namaCol,deskripcol,lokasiCol);
 
         laporButton.setOnAction(e -> {
             String nama = namaField.getText();
+            String deskripsi = deskripsiField.getText();
             String lokasi = lokasiField.getText();
             if (!nama.isEmpty() && !lokasi.isEmpty()) {
-                Item item = new Item(nama, lokasi, "Reported");
+                Item item = new Item(nama, lokasi, deskripsi, "Reported");
                 Item.addItem(item);
                 data.setAll(Item.getItemList());
                 namaField.clear();
+                deskripsiField.clear();
                 lokasiField.clear();
             }
         });
@@ -53,7 +59,7 @@ public class MahasiswaDashboard {
             stage.setScene(loginScene);
         });
 
-        layout.getChildren().addAll(welcome, namaField, lokasiField, laporButton, table, logout);
+        layout.getChildren().addAll(welcome, namaField, deskripsiField, lokasiField, laporButton, table, logout);
         Scene scene = new Scene(layout, 600, 400);
         stage.setScene(scene);
     }
