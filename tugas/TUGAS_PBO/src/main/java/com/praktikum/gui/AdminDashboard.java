@@ -8,11 +8,13 @@ import javafx.scene.control.*;
 import javafx.scene.layout.*;
 import javafx.stage.Stage;
 import main.java.com.praktikum.data.DataStore;
+import main.java.com.praktikum.data.Item;
+import main.java.com.praktikum.users.Mahasiswa;
 import main.java.com.praktikum.users.User;
 
 public class AdminDashboard {
-    private ObservableList<DataStore.Item> itemData;
-    private ObservableList<DataStore.Mahasiswa> mahasiswaData;
+    private ObservableList<Item> itemData;
+    private ObservableList<Mahasiswa> mahasiswaData;
 
     public AdminDashboard(Stage stage, User user) {
         VBox layout = new VBox(10);
@@ -20,38 +22,33 @@ public class AdminDashboard {
 
         Label title = new Label("Halo, Administrator " + user.getName());
 
-        // Inisialisasi ObservableList untuk items
-        itemData = FXCollections.observableArrayList(DataStore.getItemList());
-        TableView<DataStore.Item> table = new TableView<>();
+        itemData = FXCollections.observableArrayList(Item.getItemList());
+        TableView<Item> table = new TableView<>();
         table.setItems(itemData);
 
-        TableColumn<DataStore.Item, String> namaCol = new TableColumn<>("Nama");
+        TableColumn<Item, String> namaCol = new TableColumn<>("Nama");
         namaCol.setCellValueFactory(c -> new javafx.beans.property.SimpleStringProperty(c.getValue().getNama()));
-        TableColumn<DataStore.Item, String> lokasiCol = new TableColumn<>("Lokasi");
+        TableColumn<Item, String> lokasiCol = new TableColumn<>("Lokasi");
         lokasiCol.setCellValueFactory(c -> new javafx.beans.property.SimpleStringProperty(c.getValue().getLokasi()));
-        TableColumn<DataStore.Item, String> statusCol = new TableColumn<>("Status");
+        TableColumn<Item, String> statusCol = new TableColumn<>("Status");
         statusCol.setCellValueFactory(c -> new javafx.beans.property.SimpleStringProperty(c.getValue().getStatus()));
         table.getColumns().addAll(namaCol, lokasiCol, statusCol);
         table.setColumnResizePolicy(TableView.CONSTRAINED_RESIZE_POLICY);
 
         Button tandaiClaimed = new Button("Tandai Claimed");
         tandaiClaimed.setOnAction(e -> {
-            DataStore.Item selected = table.getSelectionModel().getSelectedItem();
+            Item selected = table.getSelectionModel().getSelectedItem();
             if (selected != null) {
-                // Update status di DataStore
-                DataStore.updateItemStatus(selected, "Claimed");
+                Item.updateItemStatus(selected, "Claimed");
 
-                // Refresh ObservableList dengan data terbaru dari DataStore
-                itemData.setAll(DataStore.getItemList());
+                itemData.setAll(Item.getItemList());
 
-                // Tampilkan pesan konfirmasi
                 Alert alert = new Alert(Alert.AlertType.INFORMATION);
                 alert.setTitle("Success");
                 alert.setHeaderText(null);
                 alert.setContentText("Status item berhasil diubah menjadi 'Claimed'");
                 alert.showAndWait();
             } else {
-                // Tampilkan pesan jika tidak ada item yang dipilih
                 Alert alert = new Alert(Alert.AlertType.WARNING);
                 alert.setTitle("Warning");
                 alert.setHeaderText(null);
@@ -60,14 +57,13 @@ public class AdminDashboard {
             }
         });
 
-        // Inisialisasi ObservableList untuk mahasiswa
         mahasiswaData = FXCollections.observableArrayList(DataStore.getMahasiswaList());
-        TableView<DataStore.Mahasiswa> mahasiswaTable = new TableView<>();
+        TableView<Mahasiswa> mahasiswaTable = new TableView<>();
         mahasiswaTable.setItems(mahasiswaData);
 
-        TableColumn<DataStore.Mahasiswa, String> namaMahasiswaCol = new TableColumn<>("Nama");
-        namaMahasiswaCol.setCellValueFactory(c -> new javafx.beans.property.SimpleStringProperty(c.getValue().getNama()));
-        TableColumn<DataStore.Mahasiswa, String> nimCol = new TableColumn<>("NIM");
+        TableColumn<Mahasiswa, String> namaMahasiswaCol = new TableColumn<>("Nama");
+        namaMahasiswaCol.setCellValueFactory(c -> new javafx.beans.property.SimpleStringProperty(c.getValue().getName()));
+        TableColumn<Mahasiswa, String> nimCol = new TableColumn<>("NIM");
         nimCol.setCellValueFactory(c -> new javafx.beans.property.SimpleStringProperty(c.getValue().getNim()));
         mahasiswaTable.getColumns().addAll(namaMahasiswaCol, nimCol);
         mahasiswaTable.setColumnResizePolicy(TableView.CONSTRAINED_RESIZE_POLICY);
@@ -83,7 +79,6 @@ public class AdminDashboard {
             String nim = nimField.getText().trim();
 
             if (!nama.isEmpty() && !nim.isEmpty()) {
-                // Cek apakah NIM sudah ada
                 boolean nimExists = DataStore.getMahasiswaList().stream()
                         .anyMatch(m -> m.getNim().equals(nim));
 
@@ -96,17 +91,13 @@ public class AdminDashboard {
                     return;
                 }
 
-                // Tambah mahasiswa baru
-                DataStore.addMahasiswa(new DataStore.Mahasiswa(nama, nim));
+                DataStore.addMahasiswa(new Mahasiswa(nama, nim));
 
-                // Refresh ObservableList dengan data terbaru
                 mahasiswaData.setAll(DataStore.getMahasiswaList());
 
-                // Clear form
                 namaField.clear();
                 nimField.clear();
 
-                // Tampilkan pesan sukses
                 Alert alert = new Alert(Alert.AlertType.INFORMATION);
                 alert.setTitle("Success");
                 alert.setHeaderText(null);
@@ -123,23 +114,19 @@ public class AdminDashboard {
 
         Button hapusMahasiswa = new Button("Hapus Mahasiswa");
         hapusMahasiswa.setOnAction(e -> {
-            DataStore.Mahasiswa selected = mahasiswaTable.getSelectionModel().getSelectedItem();
+            Mahasiswa selected = mahasiswaTable.getSelectionModel().getSelectedItem();
             if (selected != null) {
-                // Tampilkan dialog konfirmasi
                 Alert confirmAlert = new Alert(Alert.AlertType.CONFIRMATION);
                 confirmAlert.setTitle("Konfirmasi Hapus");
                 confirmAlert.setHeaderText(null);
                 confirmAlert.setContentText("Apakah Anda yakin ingin menghapus mahasiswa: " +
-                        selected.getNama() + " (" + selected.getNim() + ")?");
+                        selected.getName() + " (" + selected.getNim() + ")?");
 
                 if (confirmAlert.showAndWait().get() == ButtonType.OK) {
-                    // Hapus mahasiswa dari DataStore
                     DataStore.removeMahasiswa(selected);
 
-                    // Refresh ObservableList dengan data terbaru
                     mahasiswaData.setAll(DataStore.getMahasiswaList());
 
-                    // Tampilkan pesan sukses
                     Alert alert = new Alert(Alert.AlertType.INFORMATION);
                     alert.setTitle("Success");
                     alert.setHeaderText(null);
@@ -147,7 +134,6 @@ public class AdminDashboard {
                     alert.showAndWait();
                 }
             } else {
-                // Tampilkan pesan jika tidak ada mahasiswa yang dipilih
                 Alert alert = new Alert(Alert.AlertType.WARNING);
                 alert.setTitle("Warning");
                 alert.setHeaderText(null);

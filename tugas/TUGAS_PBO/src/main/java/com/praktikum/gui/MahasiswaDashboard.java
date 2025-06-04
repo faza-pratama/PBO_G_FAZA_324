@@ -7,7 +7,7 @@ import javafx.scene.Scene;
 import javafx.scene.control.*;
 import javafx.scene.layout.*;
 import javafx.stage.Stage;
-import main.java.com.praktikum.data.DataStore;
+import main.java.com.praktikum.data.Item;
 import main.java.com.praktikum.users.User;
 
 public class MahasiswaDashboard {
@@ -15,7 +15,7 @@ public class MahasiswaDashboard {
         VBox layout = new VBox(10);
         layout.setPadding(new Insets(10));
 
-        Label welcome = new Label("Selamat datang, " + user.getName());
+        Label welcome = new Label("Selamat datang, faza" + user.getName());
 
         TextField namaField = new TextField();
         namaField.setPromptText("Nama Barang");
@@ -24,13 +24,13 @@ public class MahasiswaDashboard {
 
         Button laporButton = new Button("Laporkan");
 
-        TableView<DataStore.Item> table = new TableView<>();
-        ObservableList<DataStore.Item> data = FXCollections.observableArrayList(DataStore.getItemList());
+        TableView<Item> table = new TableView<>();
+        ObservableList<Item> data = FXCollections.observableArrayList(Item.getItemList());
         table.setItems(data);
 
-        TableColumn<DataStore.Item, String> namaCol = new TableColumn<>("Nama");
+        TableColumn<Item, String> namaCol = new TableColumn<>("Nama");
         namaCol.setCellValueFactory(c -> new javafx.beans.property.SimpleStringProperty(c.getValue().getNama()));
-        TableColumn<DataStore.Item, String> lokasiCol = new TableColumn<>("Lokasi");
+        TableColumn<Item, String> lokasiCol = new TableColumn<>("Lokasi");
         lokasiCol.setCellValueFactory(c -> new javafx.beans.property.SimpleStringProperty(c.getValue().getLokasi()));
         table.getColumns().addAll(namaCol, lokasiCol);
 
@@ -38,9 +38,9 @@ public class MahasiswaDashboard {
             String nama = namaField.getText();
             String lokasi = lokasiField.getText();
             if (!nama.isEmpty() && !lokasi.isEmpty()) {
-                DataStore.Item item = new DataStore.Item(nama, lokasi, "Reported");
-                DataStore.addItem(item);
-                data.setAll(DataStore.getItemList());
+                Item item = new Item(nama, lokasi, "Reported");
+                Item.addItem(item);
+                data.setAll(Item.getItemList());
                 namaField.clear();
                 lokasiField.clear();
             }
